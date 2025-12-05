@@ -1,0 +1,11 @@
+[Applications][code]
+Seen=true
+
+[Applications][com.rtosta.zapzap]
+Seen=true
+
+[Applications][zen]
+Seen=true
+
+[DoNotDisturb]
+Until=2025,12,4,0,45,0.55

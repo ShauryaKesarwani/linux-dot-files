@@ -1,0 +1,14 @@
+[[plugin.deps]]
+use = "boydaihungst/mediainfo"
+rev = "1099409"
+hash = "77e78e16578e8f5a37475c04d8324619"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "f6b425a"
+hash = "14b111562c00eb1917fe3ca3ae9bb771"
+
+[[flavor.deps]]
+use = "BennyOe/tokyo-night"
+rev = "5f56364"
+hash = "c0bf69ad2c44005892d586e9693993c6"
