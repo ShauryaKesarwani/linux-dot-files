@@ -1,6 +1,3 @@
-[PlasmaTransientsConfig]
-PreloadWeight=42
-
 [PlasmaViews][Panel 2]
 alignment=132
 floating=1
@@ -25,12 +22,6 @@ panelLengthMode=1
 panelOpacity=0
 
 [PlasmaViews][Panel 33][Defaults]
-thickness=36
-
-[PlasmaViews][Panel 68]
-floating=1
-
-[PlasmaViews][Panel 68][Defaults]
 thickness=36
 
 [PlasmaViews][Panel 73]

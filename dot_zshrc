@@ -60,10 +60,19 @@ alias ls="eza -lh --group-directories-first --icons=auto"
 alias vim='nvim'
 alias nano='nvim'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+alias open="xdg-open"
+
+# Settings
+export EDITOR=nvim
+export PATH=$PATH:~/.platformio/penv/bin
+export PATH=$PATH:~/.python-global/bin/objection
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(mise activate zsh)"
 
 #yazi
 function y() {
@@ -72,4 +81,47 @@ function y() {
 	IFS= read -r -d '' cwd < "$tmp"
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
+}
+
+## nice fzf styling with openfile and copyfile command!
+# directories to ignore for faster search
+_fd_ignore=(
+  --exclude .git
+  --exclude node_modules
+  --exclude .cache
+  --exclude target
+)
+
+# preview script
+_fzf_preview="$HOME/.fzf/bin/fzf-preview.sh {}"
+#_fzf_preview="$HOME/.config/fzf-preview/fzf-preview.sh {}"
+
+# shared fzf layout/style
+_fzf_opts=(
+  --height=85%
+  --layout=reverse
+  --border
+  --preview-window=right:40%
+  --color=bg+:#1e1e2e,bg:#181825,spinner:#f5e0dc,hl:#f38ba8
+  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
+  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
+)
+
+_fzf_pick_file() {
+  fd -t f . ~ "${_fd_ignore[@]}" |
+  fzf "${_fzf_opts[@]}" \
+      --preview "$_fzf_preview" \
+      --bind 'ctrl-o:execute(xdg-open {} &)' \
+      --bind 'ctrl-y:execute-silent(echo -n "file://$(realpath {})" | wl-copy --type text/uri-list)+abort'
+}
+
+openfile() {
+  file=$(_fzf_pick_file) || return
+  xdg-open "$file" >/dev/null 2>&1 &
+}
+
+copyfile() {
+  file=$(_fzf_pick_file) || return
+  printf "file://%s" "$(realpath "$file")" | wl-copy --type text/uri-list
+  notify-send "Copied file" "$(basename "$file")"
 }
