@@ -23,17 +23,29 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # PLUGINS
-autoload -U compinit && compinit
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
+
 eval "$(starship init zsh)"
+
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
 
+#AUTOSUGGEST
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#6c7086'
+
 #KEYBINDS
 bindkey -e
 bindkey "^p" history-search-backward
 bindkey "^n" history-search-forward
+bindkey '^r' fzf-history-widget
 
 #HISTORY
 HISTSIZE=2000
@@ -47,10 +59,16 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
+setopt inc_append_history
+setopt extended_history
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' max-errors 1 numeric
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
@@ -64,8 +82,8 @@ alias open="xdg-open"
 
 # Settings
 export EDITOR=nvim
-export PATH=$PATH:~/.platformio/penv/bin
-export PATH=$PATH:~/.python-global/bin/objection
+# export PATH=$PATH:~/.platformio/penv/bin
+export PATH=$PATH:~/.python-global/bin/
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 

@@ -1,0 +1,13 @@
+**/node_modules/**
+node_modules/
+**/__pycache__/**
+__pycache__/
+
+# Ignore all lock files
+**/*.lock
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+**/Gemfile.lock
+**/Cargo.lock
+**/poetry.lock
