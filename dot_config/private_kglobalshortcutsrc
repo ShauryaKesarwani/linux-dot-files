@@ -411,6 +411,10 @@ _launch=Ctrl+Alt+Shift+F
 [services][net.local.sc-ocr.sh.desktop]
 _launch=Ctrl+Alt+Shift+T
 
+[services][org.kde.spectacle.desktop]
+CurrentMonitorScreenShot=
+OpenWithoutScreenshot=
+
 [services][systemsettings.desktop]
 _launch=Tools\t
 

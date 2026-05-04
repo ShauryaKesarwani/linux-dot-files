@@ -17,6 +17,13 @@
         "@playwright/mcp@latest"
       ],
       "type": "local",
+    },
+    "gitnexus": {
+      "type": "local",
+      "command": [
+        "gitnexus",
+        "mcp"
+      ]
     }
   },
   "permission": {

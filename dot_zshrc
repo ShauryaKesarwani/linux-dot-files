@@ -46,6 +46,8 @@ bindkey -e
 bindkey "^p" history-search-backward
 bindkey "^n" history-search-forward
 bindkey '^r' fzf-history-widget
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
 
 #HISTORY
 HISTSIZE=2000
@@ -79,11 +81,17 @@ alias vim='nvim'
 alias nano='nvim'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 alias open="xdg-open"
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias c='clear'
+alias h='history'
+alias grep='grep --color=auto'
 
 # Settings
 export EDITOR=nvim
 # export PATH=$PATH:~/.platformio/penv/bin
-export PATH=$PATH:~/.python-global/bin/
+export PATH="$HOME/.python-global/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
