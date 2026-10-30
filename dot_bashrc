@@ -27,3 +27,17 @@ function y() {
 
 source /home/shaurya/.config/broot/launcher/bash/br
 # source /usr/share/blesh/ble.sh --noattach
+
+if [ -f /opt/ros/jazzy/setup.bash ]; then
+    export PATH="/usr/bin:$PATH"
+    source /opt/ros/jazzy/setup.bash
+
+    if [ -f ~/ros2_ws/install/setup.bash ]; then
+        source ~/ros2_ws/install/setup.bash
+        source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+    fi
+fi
+
+# >>> Codex installer >>>
+export PATH="/home/shaurya/.local/bin:$PATH"
+# <<< Codex installer <<<

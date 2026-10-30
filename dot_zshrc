@@ -94,6 +94,7 @@ export EDITOR=nvim
 export PATH="$HOME/.python-global/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 
 # Shell integrations
 eval "$(fzf --zsh)"
